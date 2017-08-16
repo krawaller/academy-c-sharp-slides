@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Compiling JavaScript</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="mc2/styles/reveal.css">
+    <link rel="stylesheet" href="mc2/styles/theme.css" id="theme">
+    <link rel="stylesheet" href="mc2/styles/code.css">
+    <!--STARTCOURSESPECIFICSTYLES--><link rel="stylesheet" href="styles/cssdemo.css">
+<link rel="stylesheet" href="styles/styles.css"><!--ENDCOURSESPECIFICSTYLES-->
+  </head>
+
+  <body>
+    <div id="pos"></div>
+    <div class="reveal">
+      <div class="slides">
+        <section class="slide chaptertitle">
+          <div class="slidecontent">
+            <div class="chapternumber"> chapter 3 of 6 </div>
+            <h1>Compiling JavaScript</h1>
+            <span>Wielding webpack</p>
+</span>
+          </div>
+        </section>
+        
+        <!--STARTSECTIONINDEX--><section class="slide sectionlist">
+  <div class="slidecontent">
+    <h3>Sections in this chapter</h3>
+    <ol>
+    <li><a href="#/2">Goal</a></li><li><a href="#/3">Setup</a></li><li><a href="#/4">Basic&nbsp;bundling</a></li><li><a href="#/5">3rd&nbsp;party&nbsp;modules</a></li><li><a href="#/6">Uglifying</a></li><li><a href="#/7">Using&nbsp;ES6&nbsp;JavaScript</a></li><li><a href="#/8">Static&nbsp;resources</a></li><li><a href="#/9">Linting</a></li><li><a href="#/10">Source&nbsp;maps</a></li>
+    </ol>
+  </div>
+</section>
+<!--ENDSECTIONINDEX-->
+        <!--STARTCHAPTERCONTENT--><!--STARTSECTION1--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 1/9</div>
+      <h3>Goal</h3>
+      <p>What do we want to accomplish?</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="3-1-1">
+<span class="pos">3-1-1</span>
+<div class="slidecontent"><p>This whole chapter is <strong>one big exercise</strong> where we&#39;ll learn...</p>
+<ul>
+<li><strong>why JS developers have a build step</strong></li>
+<li><strong>how the build step works</strong></li>
+</ul>
+</div></section>
+<section class="slide" data-pos="3-1-2">
+<span class="pos">3-1-2</span>
+<div class="slidecontent"><p>To do this, you&#39;ll be walking through a whole bunch of <strong>webpack demos</strong>. </p>
+<p>Webpack is the <strong>most common tool</strong> used for code compilation.</p>
+</div></section>
+<section class="slide" data-pos="3-1-3">
+<span class="pos">3-1-3</span>
+<div class="slidecontent"><p>And, as you might have guessed, <strong>all of this will run in Node</strong>!</p>
+</div></section>
+<section class="slide" data-pos="3-1-4">
+<span class="pos">3-1-4</span>
+<div class="slidecontent"><p>You <strong>won&#39;t be creating any code yourself</strong>, you&#39;ll just be following instructions and trying to understand what happens.</p>
+<p>Which again is a process best done in company, so like before, <strong>work in teams</strong>!</p>
+</div></section>
+
+</section>
+<!--ENDSECTION1--><!--STARTSECTION2--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 2/9</div>
+      <h3>Setup</h3>
+      <p>Getting up and running</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="3-2-1">
+<span class="pos">3-2-1</span>
+<div class="slidecontent"><p>The very first steps: <strong>open the terminal</strong> and <strong>navigate to your <code>gitreps</code> folder</strong> (or whatever you call it).</p>
+</div></section>
+<section class="slide" data-pos="3-2-2">
+<span class="pos">3-2-2</span>
+<div class="slidecontent"><p>Now <strong>download the demos</strong> by typing the following command:</p>
+<p><code>git clone https://github.com/krawaller/webpackdemos.git</code></p>
+</div></section>
+<section class="slide" data-pos="3-2-3">
+<span class="pos">3-2-3</span>
+<div class="slidecontent"><p>This will download the repo into the <code>webpackdemos</code> folder. <strong>Enter that folder</strong> by doing <code>cd webpackdemos</code>!</p>
+</div></section>
+<section class="slide" data-pos="3-2-4">
+<span class="pos">3-2-4</span>
+<div class="slidecontent"><p>Inside this folder there are <strong>8 other folders, each corresponding to a demo</strong>. The following sections explain those demos one at a time!</p>
+</div></section>
+<section class="slide" data-pos="3-2-5">
+<span class="pos">3-2-5</span>
+<div class="slidecontent"><p>In order to follow along easily, you should <strong>open the entire webpackdemos folder</strong> in an editor that lets you explore files, so that you can easily switch between files.</p>
+</div></section>
+</section>
+<!--ENDSECTION2--><!--STARTSECTION3--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 3/9</div>
+      <h3>Basic bundling</h3>
+      <p>wrapping it all up</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="3-3-1">
+<span class="pos">3-3-1</span>
+<div class="slidecontent"><p>This demo demonstrates how we can <strong>split our source code into multiple files</strong>, and then <strong>bundle it up for distribution</strong>.</p>
+</div></section>
+<section class="slide" data-pos="3-3-2">
+<span class="pos">3-3-2</span>
+<div class="slidecontent"><p>To try this out, <strong>navigate into the <code>1_basic</code> folder</strong>.</p>
+</div></section>
+<section class="slide" data-pos="3-3-3">
+<span class="pos">3-3-3</span>
+<div class="slidecontent"><p><strong>Peek at <code>package.json</code></strong> - it contains a number of dependencies. We can download all of them by executing <code>npm install</code> in this folder. Do that!</p>
+</div></section>
+<section class="slide" data-pos="3-3-4">
+<span class="pos">3-3-4</span>
+<div class="slidecontent"><p>Now <strong>read the two files in the <code>src</code> directory</strong>, and try to understand how they work.</p>
+</div></section>
+<section class="slide" data-pos="3-3-5">
+<span class="pos">3-3-5</span>
+<div class="slidecontent"><p>Let&#39;s <strong>try to execute them with node</strong>! In the terminal type...</p>
+<pre><code><span class="hljs-keyword">node</span> <span class="hljs-title">src</span>/index
+</code></pre><p>...and watch the output.</p>
+</div></section>
+<section class="slide" data-pos="3-3-6">
+<span class="pos">3-3-6</span>
+<div class="slidecontent"><p>Now we&#39;ll use webpack to bundle these two files into one!</p>
+<p>First, <strong>peek at <code>webpack.config.js</code></strong>. Can you predict what will happen?</p>
+</div></section>
+<section class="slide" data-pos="3-3-7">
+<span class="pos">3-3-7</span>
+<div class="slidecontent"><p>In the terminal, <strong>execute the following</strong>:</p>
+<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> build</span>
+</code></pre></div></section>
+<section class="slide question" data-pos="3-3-8">
+<span class="pos">3-3-8</span>
+<div class="slidecontent">
+<p>But, why <code>npm run build</code>? What did that do? <strong>Shouldn&#39;t we be executing webpack</strong> somehow?</p>
+</div></section>
+<section class="slide answer" data-pos="3-3-9">
+<span class="pos">3-3-9</span>
+<div class="slidecontent">
+<p>We just did! Look at <code>package.json</code> again, and notice the <code>build</code> prop in the <code>scripts</code> part. That&#39;s what gets done when we type <code>npm run build</code>!</p>
+</div></section>
+<section class="slide" data-pos="3-3-10">
+<span class="pos">3-3-10</span>
+<div class="slidecontent"><p>Notice the <strong>generated <code>out</code> folder</strong> and the <code>bundle.js</code> created within!</p>
+</div></section>
+<section class="slide" data-pos="3-3-11">
+<span class="pos">3-3-11</span>
+<div class="slidecontent"><p><strong>Execute the created file</strong> by typing:</p>
+<pre><code><span class="hljs-keyword">node</span> <span class="hljs-title">out</span>/bundle
+</code></pre><p>You should see the <strong>same output as before</strong>!</p>
+</div></section>
+<section class="slide" data-pos="3-3-12">
+<span class="pos">3-3-12</span>
+<div class="slidecontent"><p><strong>Peek at <code>bundle.js</code> in your editor</strong>. Can you see what has happened?</p>
+</div></section>
+</section>
+<!--ENDSECTION3--><!--STARTSECTION4--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 4/9</div>
+      <h3>3rd party modules</h3>
+      <p>Let others do the work</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="3-4-1">
+<span class="pos">3-4-1</span>
+<div class="slidecontent"><p>Now we&#39;ll look at <strong>how to use 3rd party code</strong>, but also <strong>how to be smart about it</strong>!</p>
+</div></section>
+<section class="slide" data-pos="3-4-2">
+<span class="pos">3-4-2</span>
+<div class="slidecontent"><p><strong>Navigate into <code>2_inclusion</code></strong> in the terminal, and <strong>execute <code>npm install</code></strong>.</p>
+</div></section>
+<section class="slide" data-pos="3-4-3">
+<span class="pos">3-4-3</span>
+<div class="slidecontent"><p>This means downloading webpack again (yes, we&#39;ll do that for each demo), but, if you <strong>peek at <code>package.json</code></strong>, you&#39;ll notice we <strong>also use <code>lodash</code></strong>!</p>
+<p>This is a <strong>very popular utility library</strong>.</p>
+</div></section>
+<section class="slide" data-pos="3-4-4">
+<span class="pos">3-4-4</span>
+<div class="slidecontent"><p>Now <strong>peek at the code in <code>src</code></strong>, and then <strong>execute the code</strong> using <code>silly.js</code> as entry:</p>
+<pre><code><span class="hljs-keyword">node</span> <span class="hljs-title">src</span>/silly
+</code></pre></div></section>
+<section class="slide" data-pos="3-4-5">
+<span class="pos">3-4-5</span>
+<div class="slidecontent"><p><strong>Bundle it up</strong> by typing <code>npm run build</code>. If you peek at <code>webpack.config.js</code> you&#39;ll notice it used <code>silly</code> as an entry.</p>
+</div></section>
+<section class="slide" data-pos="3-4-6">
+<span class="pos">3-4-6</span>
+<div class="slidecontent"><p>Now <strong>test the generated code</strong>:</p>
+<pre><code><span class="hljs-keyword">node</span> <span class="hljs-title">out</span>/bundle
+</code></pre><p>It should <strong>show the same output as before</strong>.</p>
+</div></section>
+<section class="slide" data-pos="3-4-7">
+<span class="pos">3-4-7</span>
+<div class="slidecontent"><p><strong>Look at <code>out/bundle.js</code></strong> in the editor. It is <strong>huge</strong>!! This is because all of <code>lodash</code> got bundled up with it, which makes sense, since we <code>required</code> it in <code>silly</code>.</p>
+</div></section>
+<section class="slide" data-pos="3-4-8">
+<span class="pos">3-4-8</span>
+<div class="slidecontent"><p>Also find <code>out/bundle.js</code> in a regular file explorer and see exactly how big the file is.</p>
+<p>Keep the file explorer open, we&#39;ll use it again!</p>
+</div></section>
+<section class="slide" data-pos="3-4-9">
+<span class="pos">3-4-9</span>
+<div class="slidecontent"><p>Now, <strong>edit <code>webpack.config.js</code></strong> to <strong>use <code>smart.js</code></strong> as entry instead, then rebundle the code:</p>
+<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> build</span>
+</code></pre></div></section>
+<section class="slide" data-pos="3-4-10">
+<span class="pos">3-4-10</span>
+<div class="slidecontent"><p>Execute the generated code again to see that it still works:</p>
+<pre><code><span class="hljs-keyword">node</span> <span class="hljs-title">out</span>/bundle
+</code></pre></div></section>
+<section class="slide" data-pos="3-4-11">
+<span class="pos">3-4-11</span>
+<div class="slidecontent"><p>In the file explorer, check the new size of <code>bundle.js</code>. It is drastically smaller!</p>
+<p>Compare <code>smart.js</code> and <code>silly.js</code> and try to understand why!</p>
+</div></section>
+<section class="slide" data-pos="3-4-12">
+<span class="pos">3-4-12</span>
+<div class="slidecontent"><p>A note - not all libraries are as cleverly set up as <code>lodash</code>, so it isn&#39;t always that we&#39;re able to be this smart about it.</p>
+</div></section>
+</section>
+<!--ENDSECTION4--><!--STARTSECTION5--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 5/9</div>
+      <h3>Uglifying</h3>
+      <p>Mirror mirror on the wall</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="3-5-1">
+<span class="pos">3-5-1</span>
+<div class="slidecontent"><p>As per usual, navigate into the demo folder (<code>3_uglify</code>) and do <code>npm install</code>.</p>
+</div></section>
+<section class="slide" data-pos="3-5-2">
+<span class="pos">3-5-2</span>
+<div class="slidecontent"><p><strong>Peek at <code>webpack.config.js</code></strong> and see if you can guess what will happen!</p>
+</div></section>
+<section class="slide" data-pos="3-5-3">
+<span class="pos">3-5-3</span>
+<div class="slidecontent"><p>Now <strong>peek at the source code</strong> in <code>src/index</code>. You&#39;ll notice, from the use of the <code>document</code> variable, that this code must be run in a browser!</p>
+</div></section>
+<section class="slide" data-pos="3-5-4">
+<span class="pos">3-5-4</span>
+<div class="slidecontent"><p><strong>Bundle it up</strong> by doing the usual <code>npm run build</code>, then <strong>open <code>index.html</code></strong> in a browser to see the beautiful beer song.</p>
+</div></section>
+<section class="slide" data-pos="3-5-5">
+<span class="pos">3-5-5</span>
+<div class="slidecontent"><p>Now for the interesting part - <strong>peek at <code>out/bundle.js</code></strong> in the editor. How is it different from previous demo bundles, and why?</p>
+</div></section>
+</section>
+<!--ENDSECTION5--><!--STARTSECTION6--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 6/9</div>
+      <h3>Using ES6 JavaScript</h3>
+      <p>because we&#39;re not animals</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="3-6-1">
+<span class="pos">3-6-1</span>
+<div class="slidecontent"><p>Modern JavaScript developers of course want to use <strong>modern JavaScript</strong>.</p>
+<p>The language evolves all the time, <strong>new features are added</strong>, which we want to take advantage of!</p>
+</div></section>
+<section class="slide" data-pos="3-6-2">
+<span class="pos">3-6-2</span>
+<div class="slidecontent"><p>But, if we use those new features, our apps <strong>won&#39;t work in older browsers</strong>!</p>
+<p>We mentioned Babel earlier today, and using a build step, we&#39;ll turn new JS into old!</p>
+</div></section>
+<section class="slide" data-pos="3-6-3">
+<span class="pos">3-6-3</span>
+<div class="slidecontent"><p>Navigate into the <code>4_es6</code> folder and do <code>npm install</code>. This will take some time!</p>
+<p>Peeking at <code>package.json</code> tells us why - we have <strong>lots of dependencies</strong>, most involving the word <strong><code>babel</code></strong>.</p>
+</div></section>
+<section class="slide" data-pos="3-6-4">
+<span class="pos">3-6-4</span>
+<div class="slidecontent"><p><strong>Babel</strong> is a common tool for <strong>turning modern JavaScript into old</strong>.</p>
+<p><strong>Peek at <code>webpack.config.js</code></strong> to see that it is set up in our build chain.</p>
+</div></section>
+<section class="slide" data-pos="3-6-5">
+<span class="pos">3-6-5</span>
+<div class="slidecontent"><p><strong>Look at the source code</strong> in the <code>src</code> folder. You&#39;ll find <strong>several weird syntaxes</strong> in there that you haven&#39;t seen before.</p>
+</div></section>
+<section class="slide" data-pos="3-6-6">
+<span class="pos">3-6-6</span>
+<div class="slidecontent"><p>Try to run the code:</p>
+<pre><code><span class="hljs-keyword">node</span> <span class="hljs-title">src</span>/index
+</code></pre><p>It won&#39;t work! Node will rightfully complain about syntax errors. This isn&#39;t valid (old) JavaScript!</p>
+</div></section>
+<section class="slide" data-pos="3-6-7">
+<span class="pos">3-6-7</span>
+<div class="slidecontent"><p>Now compile by doing <code>npm run build</code>, and try to execute the bundle instead:</p>
+<pre><code><span class="hljs-keyword">node</span> <span class="hljs-title">out</span>/bundle
+</code></pre><p>This should work!</p>
+</div></section>
+<section class="slide" data-pos="3-6-8">
+<span class="pos">3-6-8</span>
+<div class="slidecontent"><p>Now <strong>compare the old source with <code>out/bundle.js</code></strong>, and notice how Babel has <strong>translated the new syntax into old</strong>!</p>
+</div></section>
+</section>
+<!--ENDSECTION6--><!--STARTSECTION7--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 7/9</div>
+      <h3>Static resources</h3>
+      <p>Not all is JS (sadly)</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="3-7-1">
+<span class="pos">3-7-1</span>
+<div class="slidecontent"><p>We can also <strong>handle other static resources in our build step</strong>, as the following demo will demonstrate!</p>
+</div></section>
+<section class="slide" data-pos="3-7-2">
+<span class="pos">3-7-2</span>
+<div class="slidecontent"><p>Navigate into the <code>5_static</code> folder and do <code>npm install</code>.</p>
+</div></section>
+<section class="slide" data-pos="3-7-3">
+<span class="pos">3-7-3</span>
+<div class="slidecontent"><p>Now, <strong>peek at</strong>...</p>
+<ul>
+<li><code>package.json</code></li>
+<li><code>webpack.config.js</code></li>
+<li><code>src/index.js</code></li>
+</ul>
+<p>...and <strong>see if you can guess</strong> what&#39;s going on!</p>
+</div></section>
+<section class="slide" data-pos="3-7-4">
+<span class="pos">3-7-4</span>
+<div class="slidecontent"><p><strong>Bundle it up</strong> by doing <code>npm run build</code>.</p>
+<p>Now <strong>open <code>index.html</code></strong> in an editor. You&#39;ll notice the picture and some CSS styling.</p>
+</div></section>
+<section class="slide" data-pos="3-7-5">
+<span class="pos">3-7-5</span>
+<div class="slidecontent"><p>But, if you <strong>peek at <code>index.html</code></strong> in the editor, you&#39;ll notice that we <strong>only use the bundle file</strong>! There&#39;s no trace of the image or the CSS!</p>
+</div></section>
+<section class="slide" data-pos="3-7-6">
+<span class="pos">3-7-6</span>
+<div class="slidecontent"><p>How did this work? <strong>Peek at <code>out/bundle.js</code></strong>, and maybe again at <code>webpack.config.js</code>.</p>
+</div></section>
+<section class="slide" data-pos="3-7-7">
+<span class="pos">3-7-7</span>
+<div class="slidecontent"><p>Note; all of what we&#39;ve done in this demo 
+<strong>isn&#39;t necessarily good practice</strong>, I just wanted to show what is possible.</p>
+</div></section>
+</section>
+<!--ENDSECTION7--><!--STARTSECTION8--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 8/9</div>
+      <h3>Linting</h3>
+      <p>Keeping dust bunnies at bay</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="3-8-1">
+<span class="pos">3-8-1</span>
+<div class="slidecontent"><p>Navigate to <code>6_eslint</code> and do <code>npm install</code>.</p>
+<p>Peek at <code>webpack.config.js</code>. What are we up to now?</p>
+</div></section>
+<section class="slide" data-pos="3-8-2">
+<span class="pos">3-8-2</span>
+<div class="slidecontent"><p>It is common for projects to have <strong>code linting rules be the same for everyone</strong>, so that our code base is unified.</p>
+<p>We accomplish this by <strong>linting in our build step</strong>!</p>
+</div></section>
+<section class="slide" data-pos="3-8-3">
+<span class="pos">3-8-3</span>
+<div class="slidecontent"><p><strong>Look at the code in <code>src/index.js</code></strong>. It looks innocent enough, right?</p>
+<p><strong>Execute it</strong> by doing <code>node src/index</code>. It should run without problem.</p>
+</div></section>
+<section class="slide" data-pos="3-8-4">
+<span class="pos">3-8-4</span>
+<div class="slidecontent"><p>Now <strong>try to bundle it</strong> by doing <code>npm run build</code>.</p>
+<p>This <strong>won&#39;t work</strong>, since <code>src/index.js</code> contains linting rule violations!</p>
+</div></section>
+<section class="slide" data-pos="3-8-5">
+<span class="pos">3-8-5</span>
+<div class="slidecontent"><p>These <strong>rules are governed by the <code>.eslintrc</code> file</strong>. Look at it! </p>
+<p>There are a <strong>billion different possible rules</strong>. You can read more at <a href="http://eslint.org/">http://eslint.org/</a>.</p>
+</div></section>
+<section class="slide" data-pos="3-8-6">
+<span class="pos">3-8-6</span>
+<div class="slidecontent"><p>But for now, try to <strong>fix the problems by editing <code>out/index.js</code></strong>, until webpack manages to bundle the file!</p>
+</div></section>
+</section>
+<!--ENDSECTION8--><!--STARTSECTION9--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 9/9</div>
+      <h3>Source maps</h3>
+      <p>Getting to the old truth</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="3-9-1">
+<span class="pos">3-9-1</span>
+<div class="slidecontent"><p>Having bundled <code>.js</code> files has one big drawback - getting an <strong>error at line 204598 in <code>bundle.js</code></strong> isn&#39;t very helpful.</p>
+<p>We want line numbers in errors to correspond to our original source code!</p>
+</div></section>
+<section class="slide" data-pos="3-9-2">
+<span class="pos">3-9-2</span>
+<div class="slidecontent"><p>This demo will <strong>demonstrate how to do this</strong>, via something called <strong>source maps</strong>.</p>
+<p>Navigate into <code>8_sourcemaps</code> and do <code>npm install</code>.</p>
+</div></section>
+<section class="slide" data-pos="3-9-3">
+<span class="pos">3-9-3</span>
+<div class="slidecontent"><p><strong>Look at the source code</strong> in <code>src/index.js</code> and <code>src/mymodule.js</code>.</p>
+<p>You&#39;ll notice that running this code will throw an error, since in <code>index.js</code> we call the <code>.gonnathrow</code> method, which does indeed throw an error.</p>
+</div></section>
+<section class="slide" data-pos="3-9-4">
+<span class="pos">3-9-4</span>
+<div class="slidecontent"><p><strong>Try this in node</strong>...</p>
+<pre><code><span class="hljs-keyword">node</span> <span class="hljs-title">src</span>/index
+</code></pre><p>...and we indeed <strong>get an error</strong>, on <strong><code>&quot;mymodule.js:8</code></strong>. This is correct, since it is on line 8 in that file that the error was caused.</p>
+</div></section>
+<section class="slide" data-pos="3-9-5">
+<span class="pos">3-9-5</span>
+<div class="slidecontent"><p>Now bundle the code using <code>npm run build</code>, and <strong>open <code>index.html</code> in a browser. </strong>Find the error message** in the console.</p>
+<p>Now we get an error on &quot;<code>bundle.js:60</code>&quot;. This isn&#39;t very helpful!</p>
+</div></section>
+<section class="slide" data-pos="3-9-6">
+<span class="pos">3-9-6</span>
+<div class="slidecontent"><p>Now <strong>rebundle the code</strong> using <code>npm run buildmap</code> instead, and <strong>reload <code>index.html</code> in the browser</strong> (making sure it isn&#39;t cached).</p>
+<p>Now we get the error at <strong><code>&quot;mymodule.js:8</code></strong> again!</p>
+</div></section>
+<section class="slide" data-pos="3-9-7">
+<span class="pos">3-9-7</span>
+<div class="slidecontent"><p>Check the <code>out</code> directory to see that there&#39;s a new file (<code>bundle.js.map</code>).</p>
+<p>It&#39;s rather <strong>unreadable</strong>, but it allows us to map the minified/uglified/packed
+code to the <strong>actual uncompressed original</strong>.</p>
+</div></section>
+<section class="slide" data-pos="3-9-8">
+<span class="pos">3-9-8</span>
+<div class="slidecontent"><p>As a final step, try <strong>clicking the error link in your browser</strong> to see that you
+actually end up seeing the original source code.</p>
+<p>All modern browsers support source mapping.</p>
+</div></section>
+</section>
+<!--ENDSECTION9--><!--ENDCHAPTERCONTENT-->
+        
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var basehref = window.location.href.replace(/chapter\d.*?$/,'')
+
+      document.addEventListener("keydown",function(e){
+        var code = e.which || e.keyCode;
+        if (code===13){
+          window.location.href = basehref+"index.html?from="+(3-1);
+        } else if (code >= 49 && code <= 9+48) {
+          window.location.hash = "#/" + (code-48+1+0);
+        }
+        if (3 < 6) {
+          if (code===99){ // the letter C for next Chapter
+            window.location.href = basehref+"chapter"+(3+1)+".html"
+          }
+        }
+      });
+    </script>
+    <script src="mc2/scripts/head.js" type="text/javascript"></script>
+    <script src="mc2/scripts/reveal.js" type="text/javascript"></script>
+    <script src="mc2/scripts/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    showNotes: false,
+    transition: 'slide',
+    dependencies: [
+      { src: 'mc2/scripts/plugin/notes/notes.js', async: true }
+    ]
+  })
+
+    window.onload = function(){
+
+      var links = document.querySelectorAll("a.link");
+      for(var i=0;i<links.length;i++){
+        var link = links[i];
+        link.innerHTML = link.innerHTML.replace(/ /g,'&nbsp;')
+      }
+      var posElem = document.getElementById('pos')
+      function updateReference(){
+        setTimeout(function(){
+          var currentpos = document.querySelector('section.present[data-pos]')
+          if (currentpos){
+            posElem.innerHTML = currentpos.getAttribute('data-pos')
+          } else {
+            posElem.innerHTML = ''
+          }
+          if (document.querySelector('.present.chaptertitle')){
+            document.body.classList.add('atchaptertitle');
+          } else {
+            document.body.classList.remove('atchaptertitle');
+          }
+        },10)
+      }
+
+      window.addEventListener("hashchange",updateReference);
+
+      updateReference();
+    };
+
+    </script>
+    <!--STARTCOURSESPECIFICSCRIPTS--><script type="text/javascript" src="scripts/bootstrap.js"></script>
+<script type="text/javascript" src="scripts/cssdemo.js"></script>
+<script type="text/javascript" src="scripts/scoped_polyfill.js"></script><!--ENDCOURSESPECIFICSCRIPTS-->
+    <script type="text/javascript" src="mc2/scripts/reload.js"></script>
+  </body>
+</html>

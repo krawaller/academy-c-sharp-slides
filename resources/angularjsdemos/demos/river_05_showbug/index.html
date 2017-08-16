@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Demo</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/style.css">
+  <link rel="stylesheet" href="../../lib/codestyle.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div>
+      <a href="../../index.html">&larr; back to demo index</a>
+      <a href="demo.html" target="_blank">run in new tab</a>
+      <iframe src="demo.html" height="600px"></iframe>
+    </div>
+    <div class="sources">
+      <div class="sourcenav"><div id='code_js'>code.js</div><div id='index_html'>index.html</div></div>
+      <div class="sourcefiles"><pre id='code_js-source'><code>
+<span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">"river"</span>,[]);
+
+app.controller(<span class="hljs-string">"listOfPosts"</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$scope</span>)</span>{
+  $scope.name = <span class="hljs-string">"River"</span>;
+  $scope.posts = [{
+    <span class="hljs-attr">title</span>: <span class="hljs-string">"An important message"</span>,
+    <span class="hljs-attr">content</span>: <span class="hljs-string">"Foo bar baz bin"</span>
+  },{
+    <span class="hljs-attr">title</span>: <span class="hljs-string">"Word of wisdom"</span>,
+    <span class="hljs-attr">content</span>: <span class="hljs-string">"Carpe noctem!"</span>
+  },{
+    <span class="hljs-attr">title</span>: <span class="hljs-string">"Another post"</span>,
+    <span class="hljs-attr">content</span>: <span class="hljs-string">"Lorem ipsum dolor sit amet"</span>
+  }];
+  $scope.selectedPost = $scope.posts[<span class="hljs-number">0</span>];
+});
+
+
+</code></pre><pre id='index_html-source'><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>A small Angular app<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"river"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"listOfPosts"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">ng-bind</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>, a feed reader<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-repeat</span>=<span class="hljs-string">"item in posts"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">ng-click</span>=<span class="hljs-string">"selectedPost = item"</span>&gt;</span>{{item.title}}<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">ng-show</span>=<span class="hljs-string">"item === selectedPost"</span>&gt;</span>
+          {{item.content}}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../lib/angular.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"code.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+    </div>
+  </div>
+  <script>
+
+  function select(id){
+    $('.sources .active').removeClass('active')
+    $('#'+id).addClass('active')
+    $('#'+id+'-source').addClass('active')
+  }
+
+  $('.sourcenav > *').click(function(e){ select(this.id) })
+
+  select( $('#app_ts').length ? 'app_ts' : $('.sourcenav > *:first-child').attr('id') )
+
+  </script>
+</body>
+
+</html>

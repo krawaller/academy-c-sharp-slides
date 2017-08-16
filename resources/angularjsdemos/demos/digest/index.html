@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Demo</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/style.css">
+  <link rel="stylesheet" href="../../lib/codestyle.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div>
+      <a href="../../index.html">&larr; back to demo index</a>
+      <a href="demo.html" target="_blank">run in new tab</a>
+      <iframe src="demo.html" height="600px"></iframe>
+    </div>
+    <div class="sources">
+      <div class="sourcenav"><div id='code_js'>code.js</div><div id='index_html'>index.html</div><div id='styles_css'>styles.css</div></div>
+      <div class="sourcefiles"><pre id='code_js-source'><code>
+<span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">"demoapp"</span>,[]);
+
+app.controller(<span class="hljs-string">"digestController"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$scope,$timeout</span>)</span>{
+  $scope.value = <span class="hljs-number">42</span>;
+  $scope.increase = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $scope.value++;
+  }
+  $timeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $scope.value = <span class="hljs-number">666</span>;
+  },<span class="hljs-number">2000</span>);
+  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"fakebutton"</span>).addEventListener(<span class="hljs-string">"click"</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $scope.value++;
+  });
+})
+</code></pre><pre id='index_html-source'><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>A small Angular app<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"styles.css"</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"demoapp"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"digestController"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{{value}}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ng-click</span>=<span class="hljs-string">"increase()"</span>&gt;</span>increase<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"fakebutton"</span>&gt;</span>increase in secret<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../lib/angular.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"code.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><pre id='styles_css-source'><code><span class="hljs-selector-class">.sel</span> {
+  <span class="hljs-attribute">background-color</span>: grey;
+}
+</code></pre></div>
+    </div>
+  </div>
+  <script>
+
+  function select(id){
+    $('.sources .active').removeClass('active')
+    $('#'+id).addClass('active')
+    $('#'+id+'-source').addClass('active')
+  }
+
+  $('.sourcenav > *').click(function(e){ select(this.id) })
+
+  select( $('#app_ts').length ? 'app_ts' : $('.sourcenav > *:first-child').attr('id') )
+
+  </script>
+</body>
+
+</html>

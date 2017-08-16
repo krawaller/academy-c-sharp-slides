@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>A small Angular app</title>
+    <style>
+      .night{ background-color: darkslateblue; color: white; }
+      .neat { font-style: italic; font-family: Tahoma; }
+    </style>
+  </head>
+  <body ng-app>
+    <p ng-class="{ night: bedtime, neat: arrogant }">
+      Hark the raven sing
+    </p>
+    <label>
+      Bedtime? <input type="checkbox" ng-model="bedtime">
+    </label>
+    <label>
+      Calligraphy? <input type="checkbox" ng-model="arrogant">
+    </label>
+    <script src="../../lib/angular.js"></script>
+  </body>
+</html>

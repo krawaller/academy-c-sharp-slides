@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My amazing game</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>
+      <h1>The strange journey</h1>
+    </header>
+    <main ng-app="gameApp" ng-controller="gameCtrl">
+      <h3>{{page.title}}</h3>
+      <img width="300" ng-src="{{page.imgUrl}}">
+      <p>{{page.babbel}}</p>
+      <ul id="pageoptions">
+        <li ng-repeat="o in page.options" ng-click="choose(o)">{{o.text}}</li>
+      </ul>
+    </main>
+    <footer>
+      &copy; David 2016. Don't rip off my work!!
+    </footer>
+    <script src="../../lib/angular.js"></script>
+    <script src="data.js"></script>
+    <script src="code.js"></script>
+  </body>
+</html>

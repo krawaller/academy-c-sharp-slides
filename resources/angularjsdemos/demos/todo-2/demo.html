@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>A small Angular app</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body ng-app="demoapp">
+
+    <div ng-controller="choreController">
+      Search str: <input ng-model="search"><br/>
+      Order: <select ng-model="direction">
+        <option ng-repeat="o in opts" ng-value="o">
+          {{o.text}}
+        </option>
+      </select>
+      <hr>
+      <div ng-repeat="chore in chores | orderBy : 'desc' : direction.reverse | filter : search" ng-class="{sel:chore.selected}">
+        {{chore.desc}}
+        <input type="checkbox" ng-model="chore.selected">
+      </div>
+      <input placeholder="Add chore..." ng-model="newChoreDesc">
+      <button ng-click="addChore()">Add chore</button>
+
+    </div>
+    <script src="../../lib/angular.js"></script>
+    <script src="code.js"></script>
+  </body>
+</html>

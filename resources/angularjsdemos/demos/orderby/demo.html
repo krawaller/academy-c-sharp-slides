@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>A small Angular app</title>
+  </head>
+  <body ng-app="orderbyapp">
+
+    <div ng-controller="fruitCtrl">
+      <label>
+        Order by tastiness instead of name:
+        <input type="checkbox" ng-model="taste">
+      </label><br>
+      <label>
+        Reverse: <input type="checkbox" ng-model="reverse">
+      </label>
+      <hr>
+      <div ng-repeat="f in fruits | orderBy : getProp() : reverse">
+        {{f.name}} has tastiness level {{f.tastiness}}
+      </div>
+    </div>
+
+    <script src="../../lib/angular.js"></script>
+    <script src="code.js"></script>
+  </body>
+</html>

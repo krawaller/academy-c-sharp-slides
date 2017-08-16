@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="395.03375"
+   height="368.75092"
+   id="svg2">
+  <defs
+     id="defs4">
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow2Send"
+       style="overflow:visible">
+      <path
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-0.3,0,0,-0.3,0.69,0)"
+         id="path3912"
+         style="fill:#880000;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <rect
+     width="355.21027"
+     height="351.41391"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="6.1131096"
+     y="17.33699"
+     id="rect3821"
+     style="fill:#999999;fill-opacity:1;stroke:none" />
+  <rect
+     width="355.21027"
+     height="353.84952"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="0.36846936"
+     y="9.6774712"
+     id="rect3015"
+     style="fill:#ddffdd;fill-opacity:1;stroke:#000000;stroke-width:0.73693871;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+  <text
+     x="24.079983"
+     y="37.443218"
+     id="text2985"
+     xml:space="preserve"
+     style="font-size:14.7387743px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+       x="24.079983"
+       y="37.443218"
+       id="tspan2987"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Monospace;-inkscape-font-specification:Monospace">name = &quot;River&quot;</tspan><tspan
+       x="24.079983"
+       y="55.866684"
+       id="tspan2989"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Monospace;-inkscape-font-specification:Monospace">posts = [...]</tspan><tspan
+       x="24.079983"
+       y="74.290154"
+       id="tspan3001"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Monospace;-inkscape-font-specification:Monospace">selectedPost = {...}</tspan></text>
+  <rect
+     width="247.01955"
+     height="59.839996"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="92.040031"
+     y="110.14616"
+     id="rect3823"
+     style="fill:#999999;fill-opacity:1;stroke:none" />
+  <rect
+     width="247.01955"
+     height="59.839996"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="87.731552"
+     y="105.35896"
+     id="rect3785"
+     style="fill:#bbffbb;fill-opacity:1;stroke:#000000;stroke-width:0.73693871;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+  <rect
+     width="247.01955"
+     height="59.839996"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="92.040031"
+     y="199.01971"
+     id="rect3825"
+     style="fill:#999999;fill-opacity:1;stroke:none" />
+  <text
+     x="101.15392"
+     y="130.17293"
+     id="text2991"
+     xml:space="preserve"
+     style="font-size:14.7387743px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+       x="101.15392"
+       y="130.17293"
+       id="tspan2995"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Monospace;-inkscape-font-specification:Monospace">title: &quot;foo&quot;</tspan><tspan
+       x="101.15392"
+       y="148.59637"
+       id="tspan2999"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Monospace;-inkscape-font-specification:Monospace">content: &quot;Lorem ipsum...&quot;</tspan></text>
+  <rect
+     width="247.01955"
+     height="59.839996"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="92.040031"
+     y="287.89328"
+     id="rect3827"
+     style="fill:#999999;fill-opacity:1;stroke:none" />
+  <rect
+     width="247.01955"
+     height="59.839996"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="87.731552"
+     y="194.23251"
+     id="rect3787"
+     style="fill:#bbffbb;fill-opacity:1;stroke:#000000;stroke-width:0.73693871;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+  <text
+     x="101.15392"
+     y="219.04646"
+     id="text3003"
+     xml:space="preserve"
+     style="font-size:14.7387743px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+       x="101.15392"
+       y="219.04646"
+       id="tspan3005"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Monospace;-inkscape-font-specification:Monospace">title: &quot;bar&quot;</tspan><tspan
+       x="101.15392"
+       y="237.46994"
+       id="tspan3007"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Monospace;-inkscape-font-specification:Monospace">content: &quot;Lorem ipsum...&quot;</tspan></text>
+  <rect
+     width="247.01955"
+     height="59.839996"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="87.731552"
+     y="283.10608"
+     id="rect3789"
+     style="fill:#bbffbb;fill-opacity:1;stroke:#000000;stroke-width:0.73693871;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+  <text
+     x="101.15392"
+     y="307.92004"
+     id="text3009"
+     xml:space="preserve"
+     style="font-size:14.7387743px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+       x="101.15392"
+       y="307.92004"
+       id="tspan3011"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Monospace;-inkscape-font-specification:Monospace">title: &quot;baz&quot;</tspan><tspan
+       x="101.15392"
+       y="326.34351"
+       id="tspan3013"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Monospace;-inkscape-font-specification:Monospace">content: &quot;Lorem ipsum...&quot;</tspan></text>
+  <rect
+     width="75.159042"
+     height="18.67008"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="7.7733774"
+     y="0.36846936"
+     id="rect3833"
+     style="fill:#ddffdd;fill-opacity:1;stroke:#000000;stroke-width:0.73693871;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+  <text
+     x="44.889431"
+     y="12.549789"
+     id="text3829"
+     xml:space="preserve"
+     style="font-size:14.7387743px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+       x="44.889431"
+       y="12.549789"
+       id="tspan3831"
+       style="font-size:10.31714249px">ng-controller</tspan></text>
+  <rect
+     width="59.361282"
+     height="18.670078"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="95.857864"
+     y="95.633759"
+     id="rect3841"
+     style="fill:#bbffbb;fill-opacity:1;stroke:#000000;stroke-width:0.73693871;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+  <text
+     x="125.79312"
+     y="107.81509"
+     id="text3843"
+     xml:space="preserve"
+     style="font-size:14.7387743px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+       x="125.79312"
+       y="107.81509"
+       id="tspan3845"
+       style="font-size:10.31714249px">ng-repeat</tspan></text>
+  <rect
+     width="59.361282"
+     height="18.670078"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="95.857864"
+     y="183.71823"
+     id="rect3847"
+     style="fill:#bbffbb;fill-opacity:1;stroke:#000000;stroke-width:0.73693871;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+  <text
+     x="125.79312"
+     y="195.89955"
+     id="text3849"
+     xml:space="preserve"
+     style="font-size:14.7387743px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+       x="125.79312"
+       y="195.89955"
+       id="tspan3851"
+       style="font-size:10.31714249px">ng-repeat</tspan></text>
+  <rect
+     width="59.361282"
+     height="18.670078"
+     rx="3.6846936"
+     ry="3.6846936"
+     x="95.857864"
+     y="273.23889"
+     id="rect3853"
+     style="fill:#bbffbb;fill-opacity:1;stroke:#000000;stroke-width:0.73693871;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+  <text
+     x="125.79312"
+     y="285.4202"
+     id="text3855"
+     xml:space="preserve"
+     style="font-size:14.7387743px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+       x="125.79312"
+       y="285.4202"
+       id="tspan3857"
+       style="font-size:10.31714249px">ng-repeat</tspan></text>
+  <path
+     d="m 247.38079,47.299491 c -15.70103,10.02399 -39.23832,14.600685 -39.23832,14.600685"
+     id="path3873"
+     style="fill:none;stroke:#880000;stroke-width:1.84234679;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Send)" />
+  <path
+     d="m 366.45693,100.74207 c 4.79297,36.78488 -5.02997,36.75559 -24.84319,33.12425"
+     id="path4319"
+     style="fill:none;stroke:#880000;stroke-width:1.84234679;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Send)" />
+  <path
+     d="m 371.32813,100.25495 c 21.35512,63.08944 2.764,120.05335 -30.68864,120.8061"
+     id="path4321"
+     style="fill:none;stroke:#880000;stroke-width:1.84234679;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Send)" />
+  <path
+     d="m 381.07057,104.15192 c 21.35508,36.29777 21.27457,206.76096 -37.02122,205.07811"
+     id="path4323"
+     style="fill:none;stroke:#880000;stroke-width:1.84234679;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Send)" />
+  <text
+     x="322.98395"
+     y="64.073753"
+     id="text3027"
+     xml:space="preserve"
+     style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Consolas;-inkscape-font-specification:Consolas"><tspan
+       x="322.98395"
+       y="64.073753"
+       id="tspan3029"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#800000;font-family:Sans;-inkscape-font-specification:Sans Bold">but when ng-click</tspan><tspan
+       x="322.98395"
+       y="80.323753"
+       id="tspan3031"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#800000;font-family:Sans;-inkscape-font-specification:Sans Bold">sets up new values,</tspan><tspan
+       x="322.98395"
+       y="96.573753"
+       id="tspan3033"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#800000;font-family:Sans;-inkscape-font-specification:Sans Bold">they end up here</tspan></text>
+  <text
+     x="251.06445"
+     y="22.883493"
+     id="text3039"
+     xml:space="preserve"
+     style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Consolas;-inkscape-font-specification:Consolas"><tspan
+       x="251.06445"
+       y="22.883493"
+       id="tspan3041"
+       style="font-weight:bold;fill:#800000;-inkscape-font-specification:Sans Bold">selectedPost</tspan><tspan
+       x="251.06445"
+       y="41.784206"
+       id="tspan3043"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#800000;font-family:Sans;-inkscape-font-specification:Sans Bold">belongs here</tspan></text>
+</svg>

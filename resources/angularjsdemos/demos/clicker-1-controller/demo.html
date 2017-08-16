@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>A small Angular app</title>
+  </head>
+  <body ng-app="demoapp">
+    <p>
+      Here we use a primitive controller, applied in the HTML.
+    </p>
+    <div ng-controller="clicker">
+      {{count}} bottles of beer on the wall
+      <button ng-click="buyMore()">Buy one more</button>
+    </div>
+    <script src="../../lib/angular.js"></script>
+    <script src="code.js"></script>
+  </body>
+</html>

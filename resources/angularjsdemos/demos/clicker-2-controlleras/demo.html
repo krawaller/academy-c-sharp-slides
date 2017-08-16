@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>A small Angular app</title>
+  </head>
+  <body ng-app="demoapp">
+    <p>
+      In AngularJS v1.2 the controller syntax improved slightly,
+      allowing us to work without $scope and lots of globals in the template.
+    </p>
+    <div ng-controller="clicker as ctrl">
+      {{ctrl.count}} bottles of beer on the wall
+      <button ng-click="ctrl.buyMore()">Buy one more</button>
+    </div>
+    <script src="../../lib/angular.js"></script>
+    <script src="code.js"></script>
+  </body>
+</html>

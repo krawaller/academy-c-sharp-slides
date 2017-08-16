@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Demo</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/style.css">
+  <link rel="stylesheet" href="../../lib/codestyle.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div>
+      <a href="../../index.html">&larr; back to demo index</a>
+      <a href="demo.html" target="_blank">run in new tab</a>
+      <iframe src="demo.html" height="600px"></iframe>
+    </div>
+    <div class="sources">
+      <div class="sourcenav"><div id='code_js'>code.js</div><div id='index_html'>index.html</div><div id='styles_css'>styles.css</div></div>
+      <div class="sourcefiles"><pre id='code_js-source'><code>
+<span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">"demoapp"</span>,[]);
+
+app.controller(<span class="hljs-string">"choreController"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$scope</span>)</span>{
+  $scope.chores = [
+    {<span class="hljs-attr">desc</span>: <span class="hljs-string">"Do the dishes"</span>},
+    {<span class="hljs-attr">desc</span>: <span class="hljs-string">"Take out trash"</span>},
+    {<span class="hljs-attr">desc</span>: <span class="hljs-string">"Make the bed"</span>}
+  ];
+
+  $scope.addChore = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $scope.chores.push({
+      <span class="hljs-attr">desc</span>: $scope.newChoreDesc
+    });
+    $scope.newChoreDesc = <span class="hljs-string">''</span>;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"After adding"</span>,$scope.chores);
+  };
+})
+</code></pre><pre id='index_html-source'><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>A small Angular app<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"styles.css"</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"demoapp"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"choreController"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-repeat</span>=<span class="hljs-string">"chore in chores"</span> <span class="hljs-attr">ng-class</span>=<span class="hljs-string">"{sel:chore.selected}"</span>&gt;</span>
+        {{chore.desc}}
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+          <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span>
+          <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"chore.selected"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Add chore..."</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"newChoreDesc"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ng-click</span>=<span class="hljs-string">"addChore()"</span> <span class="hljs-attr">ng-disabled</span>=<span class="hljs-string">"!newChoreDesc"</span>&gt;</span>Add chore<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>{{chores | json}}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../lib/angular.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"code.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><pre id='styles_css-source'><code><span class="hljs-selector-class">.sel</span> {
+  <span class="hljs-attribute">background-color</span>: grey;
+}
+</code></pre></div>
+    </div>
+  </div>
+  <script>
+
+  function select(id){
+    $('.sources .active').removeClass('active')
+    $('#'+id).addClass('active')
+    $('#'+id+'-source').addClass('active')
+  }
+
+  $('.sourcenav > *').click(function(e){ select(this.id) })
+
+  select( $('#app_ts').length ? 'app_ts' : $('.sourcenav > *:first-child').attr('id') )
+
+  </script>
+</body>
+
+</html>

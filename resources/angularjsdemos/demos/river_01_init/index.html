@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Demo</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/style.css">
+  <link rel="stylesheet" href="../../lib/codestyle.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div>
+      <a href="../../index.html">&larr; back to demo index</a>
+      <a href="demo.html" target="_blank">run in new tab</a>
+      <iframe src="demo.html" height="600px"></iframe>
+    </div>
+    <div class="sources">
+      <div class="sourcenav"><div id='index_html'>index.html</div></div>
+      <div class="sourcefiles"><pre id='index_html-source'><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>A small Angular app<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../lib/angular.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span> <span class="hljs-attr">ng-init</span>=<span class="hljs-string">"name = 'River'"</span> &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">ng-bind</span>=<span class="hljs-string">"name+', a feed reader'"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+    </div>
+  </div>
+  <script>
+
+  function select(id){
+    $('.sources .active').removeClass('active')
+    $('#'+id).addClass('active')
+    $('#'+id+'-source').addClass('active')
+  }
+
+  $('.sourcenav > *').click(function(e){ select(this.id) })
+
+  select( $('#app_ts').length ? 'app_ts' : $('.sourcenav > *:first-child').attr('id') )
+
+  </script>
+</body>
+
+</html>

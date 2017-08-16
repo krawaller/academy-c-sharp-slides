@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>A small Angular app</title>
+  </head>
+  <body ng-app="selectapp">
+
+    <div ng-controller="fruitCtrl">
+      <select ng-model="selectedFruit">
+        <option ng-repeat="f in fruits" ng-value="f">{{f.name}}</option>
+      </select>
+      <p>
+        You have selected {{selectedFruit.name}}, which
+        has a tastiness level of {{selectedFruit.tastiness}}
+      </p>
+    </div>
+
+    <script src="../../lib/angular.js"></script>
+    <script>
+      angular.module('selectapp',[]);
+    </script>
+    <script src="code.js"></script>
+  </body>
+</html>

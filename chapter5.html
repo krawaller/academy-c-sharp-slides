@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>More AngularJS</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="mc2/styles/reveal.css">
+    <link rel="stylesheet" href="mc2/styles/theme.css" id="theme">
+    <link rel="stylesheet" href="mc2/styles/code.css">
+    <!--STARTCOURSESPECIFICSTYLES--><link rel="stylesheet" href="styles/cssdemo.css">
+<link rel="stylesheet" href="styles/styles.css"><!--ENDCOURSESPECIFICSTYLES-->
+  </head>
+
+  <body>
+    <div id="pos"></div>
+    <div class="reveal">
+      <div class="slides">
+        <section class="slide chaptertitle">
+          <div class="slidecontent">
+            <div class="chapternumber"> chapter 5 of 6 </div>
+            <h1>More AngularJS</h1>
+            <span>We&#39;re far from done yet!</p>
+</span>
+          </div>
+        </section>
+        
+        <!--STARTSECTIONINDEX--><section class="slide sectionlist">
+  <div class="slidecontent">
+    <h3>Sections in this chapter</h3>
+    <ol>
+    <li><a href="#/2">Dropdowns</a></li><li><a href="#/3">Filters</a></li><li><a href="#/4">Exercise&nbsp;&#8209;&nbsp;more&nbsp;dabbling</a></li><li><a href="#/5">Syntax&nbsp;differences</a></li><li><a href="#/6">Communication</a></li><li><a href="#/7">Exercise&nbsp;&#8209;&nbsp;Quiz</a></li>
+    </ol>
+  </div>
+</section>
+<!--ENDSECTIONINDEX-->
+        <!--STARTCHAPTERCONTENT--><!--STARTSECTION1--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 1/6</div>
+      <h3>Dropdowns</h3>
+      <p>get down with it</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="5-1-1">
+<span class="pos">5-1-1</span>
+<div class="slidecontent"><p>So, <strong>dropdowns</strong>! In regular HTML they are defined like this:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">select</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"id1"</span>&gt;</span>Apple<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"id2"</span> <span class="hljs-attr">selected</span>&gt;</span>Pear<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"id3"</span>&gt;</span>Orange<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+</code></pre>
+</div></section>
+<section class="slide" data-pos="5-1-2">
+<span class="pos">5-1-2</span>
+<div class="slidecontent"><p>Ideally, we&#39;d want to be able to <strong>ask <code>select</code> for the current value</strong>, just like we do with an input or a checkbox.</p>
+<p>But <strong>we can&#39;t</strong>!</p>
+</div></section>
+<section class="slide" data-pos="5-1-3">
+<span class="pos">5-1-3</span>
+<div class="slidecontent"><p>The <code>select</code> doesn&#39;t have a value. We have to <strong>loop over all the <code>option</code> children</strong> to find the one with the <code>selected</code> attribute, and read the <code>value</code> attribute from that.</p>
+<p>Like animals!</p>
+</div></section>
+<section class="slide" data-pos="5-1-4">
+<span class="pos">5-1-4</span>
+<div class="slidecontent"><p>Since this makes <code>select</code>s hard to work with, <strong>most frameworks provide an easier way</strong> to get the value from a dropdown.</p>
+<p>And AngularJS is no different! In AngularJS, we can <strong>act as if <code>select</code> has a value</strong>, for instance by <strong>setting <code>ng-model</code> on it</strong>.</p>
+</div></section>
+<section class="slide" data-pos="5-1-5">
+<span class="pos">5-1-5</span>
+<div class="slidecontent"><p>Also, AngularJS gives us a syntax for <strong>generating the option elements</strong>. Here&#39;s the <strong>old syntax</strong>, which uses a unique <strong><code>ng-options</code> directive</strong>:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"selectedFruit"</span> <span class="hljs-attr">ng-options</span>=<span class="hljs-string">"f.name for f in fruits"</span>&gt;</span>
+</code></pre>
+</div></section>
+<section class="slide question" data-pos="5-1-6">
+<span class="pos">5-1-6</span>
+<div class="slidecontent">
+<p>So, the code we just saw...</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"selectedFruit"</span> <span class="hljs-attr">ng-options</span>=<span class="hljs-string">"f.name for f in fruits"</span>&gt;</span>
+</code></pre>
+<p>...<strong>why is it more complex than <code>ng-repeat</code></strong>?</p>
+</div></section>
+<section class="slide answer" data-pos="5-1-7">
+<span class="pos">5-1-7</span>
+<div class="slidecontent">
+<p>Because we <strong>need to say two things</strong> about each option:</p>
+<ul>
+<li>what <strong><code>value</code></strong> should it have</li>
+<li>what <strong>text</strong> should be displayed</li>
+</ul>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"selectedFruit"</span> <span class="hljs-attr">ng-options</span>=<span class="hljs-string">"f.name for f in fruits"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+</code></pre>
+<p>Here the <strong>iteration variable will be the value</strong>, and <strong>the expression before <code>for</code> will be the text</strong>.</p>
+</div></section>
+<section class="slide" data-pos="5-1-8">
+<span class="pos">5-1-8</span>
+<div class="slidecontent"><p>See this in action in the <a href="resources/angularjsdemos/demos/select" target="_blank">Select</a> demo.</p>
+</div></section>
+<section class="slide" data-pos="5-1-9">
+<span class="pos">5-1-9</span>
+<div class="slidecontent"><p>In version 1.6 we got a <strong>nicer syntax</strong> where we use <strong>regular <code>ng-repeat</code>s</strong> on option element, together with a <strong>new <code>ng-value</code> directive</strong> to create the values:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"selectedFruit"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">ng-repeat</span>=<span class="hljs-string">"f in fruits"</span> <span class="hljs-attr">ng-value</span>=<span class="hljs-string">"f"</span>&gt;</span>{{f.name}}<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+</code></pre>
+<p>The <strong>text to show</strong> is now simply <strong>whatever we put inside the repeated <code>option</code></strong>.</p>
+</div></section>
+<section class="slide" data-pos="5-1-10">
+<span class="pos">5-1-10</span>
+<div class="slidecontent"><p>See this in action in the <a href="resources/angularjsdemos/demos/select-new" target="_blank">Select-new</a> demo.</p>
+</div></section>
+<section class="slide" data-pos="5-1-11">
+<span class="pos">5-1-11</span>
+<div class="slidecontent"><p>Oh, and note - regardless of which syntax you use - if you don&#39;t <strong>initialise the <code>ng-model</code> variable</strong> in the controller...</p>
+<pre><code><span class="hljs-meta">$</span><span class="bash">scope.selectedFruit = <span class="hljs-variable">$scope</span>.fruits[0];</span>
+</code></pre><p>...we&#39;ll get an empty first option in the select.</p>
+</div></section>
+</section>
+<!--ENDSECTION1--><!--STARTSECTION2--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 2/6</div>
+      <h3>Filters</h3>
+      <p>including a filter named filter</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="5-2-1">
+<span class="pos">5-2-1</span>
+<div class="slidecontent"><p>Remember the <strong>debug tip</strong> from before?</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>{{list | json}}<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+</code></pre>
+<p>So, <strong>what is that pipe thing there</strong>?! That isn&#39;t regular JavaScript!</p>
+</div></section>
+<section class="slide list" data-pos="5-2-2">
+<span class="pos">5-2-2</span>
+<div class="slidecontent">
+<p>That&#39;s called a <strong>filter</strong>, and it is a <strong>special syntax AngularJS introduced</strong>. The filters are really just <strong>normal functions</strong>.</p>
+<p>There are many more filters than <code>json</code>, and now we&#39;ll meet two:</p>
+<ul>
+<li><span>a</span><strong><code>orderBy</code></strong></li>
+<li><span>b</span><strong><code>filter</code></strong></li>
+</ul>
+</div></section>
+<section class="slide num numA" data-pos="5-2-3">
+<span class="pos">5-2-3</span>
+<div class="slidecontent">
+<p>First, <strong><code>orderBy</code></strong>! This is a useful filter to <strong>control sorting of a list of objects</strong>.</p>
+<p>Say we <strong>expose this list</strong> from the controller:</p>
+<pre><code class="lang-javascript">$scope.list = [
+  {<span class="hljs-attr">name</span>: <span class="hljs-string">'David'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">37</span>},
+  {<span class="hljs-attr">name</span>: <span class="hljs-string">'Jacob'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">30</span>}
+]
+</code></pre>
+</div></section>
+<section class="slide" data-pos="5-2-4">
+<span class="pos">5-2-4</span>
+<div class="slidecontent"><p>If we <strong>render them in an <code>ng-repeat</code></strong>...</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-repeat</span>=<span class="hljs-string">"person in list"</span>&gt;</span>
+  {{person.name}}
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>...we&#39;ll get David first, then Jacob, since that&#39;s their order in the list.</p>
+</div></section>
+<section class="slide" data-pos="5-2-5">
+<span class="pos">5-2-5</span>
+<div class="slidecontent"><p>But if we <strong>use orderBy</strong> and <strong>pass in <code>&#39;age&#39;</code></strong> as a parameter:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-repeat</span>=<span class="hljs-string">"person in list | orderBy : 'age' "</span>&gt;</span>
+  {{person.name}}
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>...then we get Jacob first, and then David!</p>
+<p>(note the weird <strong>colon syntax for parameters</strong>)</p>
+</div></section>
+<section class="slide" data-pos="5-2-6">
+<span class="pos">5-2-6</span>
+<div class="slidecontent"><p>The <code>orderBy</code> filter can also take a <strong>second parameter</strong> - if that is truthy, then the <strong>order will be descending</strong> instead. So this...</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-repeat</span>=<span class="hljs-string">"person in list | orderBy : 'age' : true"</span>&gt;</span>
+  {{person.name}}
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>...would mean we get David first again!</p>
+</div></section>
+<section class="slide" data-pos="5-2-7">
+<span class="pos">5-2-7</span>
+<div class="slidecontent"><p>Of course, for true power, we could <strong>make these parameters dynamic</strong>, as in this demo: <a href="resources/angularjsdemos/demos/orderby" target="_blank">orderBy</a></p>
+</div></section>
+<section class="slide num numB" data-pos="5-2-8">
+<span class="pos">5-2-8</span>
+<div class="slidecontent">
+<p>Now for the <strong>filter names <code>filter</code></strong>! Can you guess what it does? </p>
+<p>That&#39;s right, it <strong>filters</strong>!</p>
+</div></section>
+<section class="slide" data-pos="5-2-9">
+<span class="pos">5-2-9</span>
+<div class="slidecontent"><p>If we used the <strong>same list as in the previous demo</strong>...</p>
+<pre><code class="lang-javascript">$scope.fruits = [
+  {<span class="hljs-attr">name</span>:<span class="hljs-string">"Apple"</span>,<span class="hljs-attr">tastiness</span>:<span class="hljs-number">6</span>},
+  {<span class="hljs-attr">name</span>:<span class="hljs-string">"Cherry"</span>,<span class="hljs-attr">tastiness</span>:<span class="hljs-number">10</span>},
+  {<span class="hljs-attr">name</span>:<span class="hljs-string">"Strawberry"</span>,<span class="hljs-attr">tastiness</span>:<span class="hljs-number">4</span>}
+];
+</code></pre>
+</div></section>
+<section class="slide" data-pos="5-2-10">
+<span class="pos">5-2-10</span>
+<div class="slidecontent"><p>...and rendered them like this:</p>
+<pre><code>&lt;<span class="hljs-keyword">div</span> ng-<span class="hljs-keyword">repeat</span>=<span class="hljs-string">"f in fruits | filter: 'rry' "</span>&gt;
+  {{f.<span class="hljs-built_in">name</span>}} has tastiness level {{f.tastiness}}
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</code></pre><p>...we&#39;d <strong>only see Cherry and Strawberry</strong>.</p>
+</div></section>
+<section class="slide" data-pos="5-2-11">
+<span class="pos">5-2-11</span>
+<div class="slidecontent"><p>When we <strong>pass a string to <code>filter</code></strong>, it will try to match it to <strong>every property</strong> if the list items objects.</p>
+<p>We can also <strong>filter for specific properties</strong> by <strong>passing in an object</strong>:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-repeat</span>=<span class="hljs-string">"p in persons | filter: {firstName: 'rry'} "</span>&gt;</span>
+</code></pre>
+<p>As before, the true power is of course if we <strong>made the filter string dynamic</strong>!</p>
+</div></section>
+</section>
+<!--ENDSECTION2--><!--STARTSECTION3--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 3/6</div>
+      <h3>Exercise - more dabbling</h3>
+      <p>Cementing the foundation further</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="5-3-1">
+<span class="pos">5-3-1</span>
+<div class="slidecontent"><p>Ok - remember the <strong>chore app</strong> you built earlier?</p>
+<p><img src="resources/images/chorelist.png" alt=""></p>
+<p>This is an exercise to <strong>cram in dropdowns and filters</strong>!</p>
+</div></section>
+<section class="slide list" data-pos="5-3-2">
+<span class="pos">5-3-2</span>
+<div class="slidecontent">
+<p>Specifically, we&#39;ll add <strong>two new pieces of functionality</strong>:</p>
+<ul>
+<li><span>a</span>filtering the list</li>
+<li><span>b</span>choose ascending or descending sort</li>
+</ul>
+<p>Do them one at a time. The second is the hardest. :)</p>
+</div></section>
+<section class="slide num numA" data-pos="5-3-3">
+<span class="pos">5-3-3</span>
+<div class="slidecontent">
+<p>To allow the user to <strong>filter the chore list</strong>, you need to...</p>
+<ul>
+<li><strong>add an input field</strong> where they can type a search string</li>
+<li><strong>use that search string</strong> to filter the list</li>
+</ul>
+</div></section>
+<section class="slide num numB" data-pos="5-3-4">
+<span class="pos">5-3-4</span>
+<div class="slidecontent">
+<p>To <strong>create the dropdown</strong>, you need to</p>
+<ul>
+<li><strong>expose an array</strong> of option objects, one with a reverse prop set to true</li>
+<li><strong>use that array</strong> to <strong>populate a <code>select</code></strong></li>
+<li><strong>use the <code>select</code> value</strong> as input to the <code>orderBy</code> directive</li>
+</ul>
+</div></section>
+<section class="slide" data-pos="5-3-5">
+<span class="pos">5-3-5</span>
+<div class="slidecontent"><p>When you&#39;re done with it all, it should <strong>look something like this</strong>:</p>
+<p><img src="resources/images/chorelistmore.png" alt=""></p>
+</div></section>
+<section class="slide question" data-pos="5-3-6">
+<span class="pos">5-3-6</span>
+<div class="slidecontent">
+<p>Waitwait - doesn&#39;t this mean that we have to use <strong>two filters at the same time</strong>? We want to have <strong>both <code>orderBy</code> and <code>filter</code></strong> on the list we repeat over!</p>
+</div></section>
+<section class="slide answer" data-pos="5-3-7">
+<span class="pos">5-3-7</span>
+<div class="slidecontent">
+<p>Yes indeed! To add a second filter, simply <strong>add another pipe</strong>!</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-repeat</span>=<span class="hljs-string">"i in list | filter1 : argtofilter1 | filter2"</span>&gt;</span>
+</code></pre>
+</div></section>
+</section>
+<!--ENDSECTION3--><!--STARTSECTION4--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 4/6</div>
+      <h3>Syntax differences</h3>
+      <p>all the ways to skin a cat</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="5-4-1">
+<span class="pos">5-4-1</span>
+<div class="slidecontent"><p>So, behold this <strong>simple clicker app</strong>...</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"myapp"</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"clicker"</span>&gt;</span>
+  {{count}} bottles of beer on the wall
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ng-click</span>=<span class="hljs-string">"buyMore()"</span>&gt;</span>Buy one more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+</div></section>
+<section class="slide" data-pos="5-4-2">
+<span class="pos">5-4-2</span>
+<div class="slidecontent"><p>...served by this <strong>controller</strong>:</p>
+<pre><code class="lang-javascript">app.controller(<span class="hljs-string">"clicker"</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$scope</span>)</span>{
+  $scope.count = <span class="hljs-number">3</span>;
+  $scope.buyMore = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $scope.count++;
+  }
+});
+</code></pre>
+<p>Try it here: <a href="resources/angularjsdemos/demos/clicker-1-controller" target="_blank">clicker controller</a> demo.</p>
+</div></section>
+<section class="slide list" data-pos="5-4-3">
+<span class="pos">5-4-3</span>
+<div class="slidecontent">
+<p>You&#39;re not going to like this, but there are <strong>4 other ways to express this app</strong>!</p>
+<ul>
+<li><span>a</span>using <strong>controller as</strong> syntax</li>
+<li><span>b</span>using a <strong>directive</strong></li>
+<li><span>c</span>using a <strong>component</strong></li>
+<li><span>d</span>using a <strong>component class</strong></li>
+</ul>
+</div></section>
+<section class="slide num numA" data-pos="5-4-4">
+<span class="pos">5-4-4</span>
+<div class="slidecontent">
+<p>The <strong>controller as</strong> syntax is a <strong>slight tweak</strong> to the first version. Here&#39;s the template:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"myapp"</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"clicker as ctrl"</span>&gt;</span>
+  {{ctrl.count}} bottles of beer on the wall
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ng-click</span>=<span class="hljs-string">"ctrl.buyMore()"</span>&gt;</span>Buy one more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>Note the alias, and how <strong>all variables are read off the alias</strong>.</p>
+</div></section>
+<section class="slide" data-pos="5-4-5">
+<span class="pos">5-4-5</span>
+<div class="slidecontent"><p>The <strong>controller attaches stuff to <code>this</code> instead of <code>$scope</code></strong>:</p>
+<pre><code>app.controller(<span class="hljs-string">"clicker"</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>;
+  <span class="hljs-keyword">this</span>.buyMore = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">this</span>.count++;
+  }
+});
+</code></pre><p>Try it here: <a href="resources/angularjsdemos/demos/clicker-2-controlleras" target="_blank">clicker controllerAs</a> demo.</p>
+</div></section>
+<section class="slide num numB" data-pos="5-4-6">
+<span class="pos">5-4-6</span>
+<div class="slidecontent">
+<p>We can also <strong>encapsulate the app in a directive</strong>!</p>
+<p>The HTML is then super simple:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"myapp"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">clicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">clicker</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+</div></section>
+<section class="slide" data-pos="5-4-7">
+<span class="pos">5-4-7</span>
+<div class="slidecontent"><p>And <strong>here&#39;s the code file</strong>:</p>
+<pre><code class="lang-javascript">app.directive(<span class="hljs-string">"clicker"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">restrict</span>: <span class="hljs-string">"E"</span>,
+    <span class="hljs-attr">scope</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;div&gt;{{count}} bottles of beer etc... (SHORTENED)`</span>,
+    <span class="hljs-attr">link</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope,elem,attrs</span>)</span>{
+      scope.count = <span class="hljs-number">3</span>;
+      scope.buyMore = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        scope.count++;
+      }
+    }
+  };
+});
+</code></pre>
+<p>Try it here: <a href="resources/angularjsdemos/demos/clicker-2.5-directive" target="_blank">clicker directive</a></p>
+</div></section>
+<section class="slide" data-pos="5-4-8">
+<span class="pos">5-4-8</span>
+<div class="slidecontent"><p>An <strong>advantage with directives</strong> is that we can <strong>easily reuse them</strong> in many places:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"myapp"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">clicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">clicker</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">clicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">clicker</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">clicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">clicker</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>Try it here: <a href="resources/angularjsdemos/demos/clicker-2.5-directive-many" target="_blank">clicker directive many</a></p>
+</div></section>
+<section class="slide" data-pos="5-4-9">
+<span class="pos">5-4-9</span>
+<div class="slidecontent"><p>Did you notice the <strong><code>scope: true</code></strong> part of the directive definition?</p>
+<p><strong>Without that the directive doesn&#39;t get it&#39;s own scope</strong>, which means that <strong>all variables end up in the outer scope</strong>:</p>
+<p><a href="resources/angularjsdemos/demos/clicker-2.5-directive-broken" target="_blank">clicker directive many broken</a></p>
+</div></section>
+<section class="slide num numC" data-pos="5-4-10">
+<span class="pos">5-4-10</span>
+<div class="slidecontent">
+<p>With AngularJS v1.5 they introduced a <strong>new concept called <code>component</code></strong>. These are really a <strong>slightly simpler version of directives</strong>:</p>
+<pre><code class="lang-javascript">app.component(<span class="hljs-string">"clicker"</span>,{
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;div&gt;{{$ctrl.count}} bottles of beer.. (SHORTENED)`</span>,
+  <span class="hljs-attr">controller</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">this</span>.buyMore = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">this</span>.count++;
+    }
+  }
+});
+</code></pre>
+</div></section>
+<section class="slide" data-pos="5-4-11">
+<span class="pos">5-4-11</span>
+<div class="slidecontent"><p>Note how...</p>
+<ul>
+<li>the <strong>component method receives a definition object directly</strong>, instead of a function that returns the definition object.</li>
+<li>the <strong>controller is aliased to <code>$ctrl</code> by default</strong> (this can be altered)</li>
+<li>it is <strong>also possible to use <code>$scope</code> syntax</strong> as we did originally</li>
+</ul>
+<p>Try the component here: <a href="resources/angularjsdemos/demos/clicker-3-component" target="_blank">clicker component</a></p>
+</div></section>
+<section class="slide num numD" data-pos="5-4-12">
+<span class="pos">5-4-12</span>
+<div class="slidecontent">
+<p>Finally, as a <strong>small variant to the component</strong>, we can use a <strong>class instead of a function</strong> as controller:</p>
+<pre><code class="lang-javascript">app.component(<span class="hljs-string">"clicker"</span>,{
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;div&gt;{{$ctrl.count}} bottles of beer.. (SHORTENED)`</span>,
+  <span class="hljs-attr">controller</span>: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> </span>{
+    <span class="hljs-keyword">constructor</span>($scope){
+      <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>;
+    };
+    buyMore(){
+      <span class="hljs-keyword">this</span>.count++;
+    };
+  }
+});
+</code></pre>
+<p>Try this here <a href="resources/angularjsdemos/demos/clicker-4-componentclass" target="_blank">clicker component class</a></p>
+</div></section>
+<section class="slide question" data-pos="5-4-13">
+<span class="pos">5-4-13</span>
+<div class="slidecontent">
+<p>Soooo.... <strong>which should we use</strong>?</p>
+</div></section>
+<section class="slide answer" data-pos="5-4-14">
+<span class="pos">5-4-14</span>
+<div class="slidecontent">
+<p><img src="resources/images/smileyupsidedown.svg" style="border:none;background:inherit;max-width:200px;margin-bottom:-90px;margin-left:20px;"></p>
+</div></section>
+</section>
+<!--ENDSECTION4--><!--STARTSECTION5--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 5/6</div>
+      <h3>Communication</h3>
+      <p>intercontroller chitchat</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="5-5-1">
+<span class="pos">5-5-1</span>
+<div class="slidecontent"><p>We <strong>won&#39;t go into too much detail</strong>, as the topic is (somewhat) advanced.</p>
+<p>But I&#39;ll show some demos problematising <strong>how controllers communicate with each other</strong>.</p>
+</div></section>
+<section class="slide" data-pos="5-5-2">
+<span class="pos">5-5-2</span>
+<div class="slidecontent"><p>Remember my <strong>&#39;River&#39; feed reader</strong>? Last we saw it just <strong>listed some posts</strong>.</p>
+<p>Now we&#39;ll <strong>introduce topics</strong>! The user can <strong>select a topic</strong>, and then the <strong>posts from that topic will be shown</strong>.</p>
+<p>To handle the topics I&#39;ll add <strong>new Topic controller</strong>.</p>
+</div></section>
+<section class="slide" data-pos="5-5-3">
+<span class="pos">5-5-3</span>
+<div class="slidecontent"><p>But here comes the problem: my old <strong>Post controller needs access to the selected topic</strong>, but that data lives <strong>inside the Topic controller</strong>!</p>
+<p>How do we solve that?</p>
+</div></section>
+<section class="slide list" data-pos="5-5-4">
+<span class="pos">5-5-4</span>
+<div class="slidecontent">
+<p>There are (at least) <strong>three different solutions</strong>:</p>
+<ul>
+<li><span>a</span><strong>nest</strong> the controllers</li>
+<li><span>b</span>use the <strong>event system</strong></li>
+<li><span>c</span>use a <strong>service</strong></li>
+</ul>
+</div></section>
+<section class="slide num numA" data-pos="5-5-5">
+<span class="pos">5-5-5</span>
+<div class="slidecontent">
+<p>The <strong>simplest solution</strong> is likely to simply <strong>place the Post controller inside the Topic controller</strong>. Because we can access variables in outer scopes, the post controller can now see the selected topic!</p>
+<p><a href="resources/angularjsdemos/demos/river_07_nestedcontrollers" target="_blank">river 7 nested controllers</a></p>
+</div></section>
+<section class="slide" data-pos="5-5-6">
+<span class="pos">5-5-6</span>
+<div class="slidecontent"><p>This is however <strong>not a good solution</strong>. We now have a <strong>tight coupling between the controllers</strong>, and <strong>implicit dependencies between them</strong>.</p>
+</div></section>
+<section class="slide num numB" data-pos="5-5-7">
+<span class="pos">5-5-7</span>
+<div class="slidecontent">
+<p>Instead we can use <strong>AngularJS event system</strong>, that lets us <strong>send events between scopes</strong>!</p>
+<p><a href="resources/angularjsdemos/demos/river_08_events" target="_blank">river 8 events</a></p>
+</div></section>
+<section class="slide" data-pos="5-5-8">
+<span class="pos">5-5-8</span>
+<div class="slidecontent"><p>That <strong>works pretty well</strong>! The <strong>events are the only connection</strong>, but we&#39;re now <strong>depending on knowing the event names</strong>.</p>
+</div></section>
+<section class="slide num numC" data-pos="5-5-9">
+<span class="pos">5-5-9</span>
+<div class="slidecontent">
+<p>An alternative to events is to use a <strong>service</strong> - a separate singleton <strong>object</strong> that can be <strong>injected into the controllers</strong>!</p>
+<p><a href="resources/angularjsdemos/demos/river_09_service" target="_blank">river 9 service</a></p>
+</div></section>
+<section class="slide" data-pos="5-5-10">
+<span class="pos">5-5-10</span>
+<div class="slidecontent"><p>This solution has the added advantage of <strong>giving us a good place for the data to live</strong>.</p>
+<p>A downside is <strong>added complexity</strong>, since we needed to build a subscribe system.</p>
+</div></section>
+</section>
+<!--ENDSECTION5--><!--STARTSECTION6--><section>
+  <section class="slide sectiontitle">
+    <div class="slidecontent">
+      <div class='sectioncount'>Section 6/6</div>
+      <h3>Exercise - Quiz</h3>
+      <p>New exercise</p>
+</p>
+    </div>
+  </section>
+  <section class="slide" data-pos="5-6-1">
+<span class="pos">5-6-1</span>
+<div class="slidecontent"><p>Here&#39;s <strong>one last exercise</strong>! It <strong>doesn&#39;t add anything new</strong>, instead it is meant to <strong>cement our existing templating skills</strong>.</p>
+<p>We&#39;re going to <strong>build a quiz</strong>!</p>
+</div></section>
+<section class="slide" data-pos="5-6-2">
+<span class="pos">5-6-2</span>
+<div class="slidecontent"><p>Here are the <strong>vague specs from the client</strong>:</p>
+<ul>
+<li>It should show a <strong>series of questions</strong></li>
+<li>Each question has <strong>several answer options</strong>, of which <strong>only one is correct</strong></li>
+<li>After the last question your <strong>score</strong> is shown</li>
+</ul>
+<p>No more details available!</p>
+</div></section>
+<section class="slide" data-pos="5-6-3">
+<span class="pos">5-6-3</span>
+<div class="slidecontent"><p>Here&#39;s a suggested battleplan:</p>
+<ul>
+<li>start with <strong>deciding what the data looks like</strong></li>
+<li><strong>create a quiz</strong> according to that format</li>
+<li>then <strong>build the template</strong> and test it with a question</li>
+<li>now <strong>add the logic to go between questions</strong></li>
+<li>finally <strong>introduce the score mechanism</strong></li>
+</ul>
+</div></section>
+<section class="slide challenge" data-pos="5-6-4">
+<span class="pos">5-6-4</span>
+<div class="slidecontent">
+<p>Was this <strong>too easy</strong>? Find <strong>ways to improve</strong> the quiz and make it more interesting! :)</p>
+</div></section>
+</section>
+<!--ENDSECTION6--><!--ENDCHAPTERCONTENT-->
+        
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var basehref = window.location.href.replace(/chapter\d.*?$/,'')
+
+      document.addEventListener("keydown",function(e){
+        var code = e.which || e.keyCode;
+        if (code===13){
+          window.location.href = basehref+"index.html?from="+(5-1);
+        } else if (code >= 49 && code <= 6+48) {
+          window.location.hash = "#/" + (code-48+1+0);
+        }
+        if (5 < 6) {
+          if (code===99){ // the letter C for next Chapter
+            window.location.href = basehref+"chapter"+(5+1)+".html"
+          }
+        }
+      });
+    </script>
+    <script src="mc2/scripts/head.js" type="text/javascript"></script>
+    <script src="mc2/scripts/reveal.js" type="text/javascript"></script>
+    <script src="mc2/scripts/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    showNotes: false,
+    transition: 'slide',
+    dependencies: [
+      { src: 'mc2/scripts/plugin/notes/notes.js', async: true }
+    ]
+  })
+
+    window.onload = function(){
+
+      var links = document.querySelectorAll("a.link");
+      for(var i=0;i<links.length;i++){
+        var link = links[i];
+        link.innerHTML = link.innerHTML.replace(/ /g,'&nbsp;')
+      }
+      var posElem = document.getElementById('pos')
+      function updateReference(){
+        setTimeout(function(){
+          var currentpos = document.querySelector('section.present[data-pos]')
+          if (currentpos){
+            posElem.innerHTML = currentpos.getAttribute('data-pos')
+          } else {
+            posElem.innerHTML = ''
+          }
+          if (document.querySelector('.present.chaptertitle')){
+            document.body.classList.add('atchaptertitle');
+          } else {
+            document.body.classList.remove('atchaptertitle');
+          }
+        },10)
+      }
+
+      window.addEventListener("hashchange",updateReference);
+
+      updateReference();
+    };
+
+    </script>
+    <!--STARTCOURSESPECIFICSCRIPTS--><script type="text/javascript" src="scripts/bootstrap.js"></script>
+<script type="text/javascript" src="scripts/cssdemo.js"></script>
+<script type="text/javascript" src="scripts/scoped_polyfill.js"></script><!--ENDCOURSESPECIFICSCRIPTS-->
+    <script type="text/javascript" src="mc2/scripts/reload.js"></script>
+  </body>
+</html>

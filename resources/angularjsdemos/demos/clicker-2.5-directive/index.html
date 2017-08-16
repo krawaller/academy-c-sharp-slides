@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Demo</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/style.css">
+  <link rel="stylesheet" href="../../lib/codestyle.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div>
+      <a href="../../index.html">&larr; back to demo index</a>
+      <a href="demo.html" target="_blank">run in new tab</a>
+      <iframe src="demo.html" height="600px"></iframe>
+    </div>
+    <div class="sources">
+      <div class="sourcenav"><div id='code_js'>code.js</div><div id='index_html'>index.html</div></div>
+      <div class="sourcefiles"><pre id='code_js-source'><code>
+<span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">"demoapp"</span>,[]);
+
+app.directive(<span class="hljs-string">"clicker"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">restrict</span>: <span class="hljs-string">"E"</span>,
+    <span class="hljs-attr">scope</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;div&gt;
+      {{count}} bottles of beer on the wall
+      &lt;button ng-click="buyMore()"&gt;Buy one more&lt;/button&gt;
+    &lt;/div&gt;`</span>,
+    <span class="hljs-attr">link</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope,elem,attrs</span>)</span>{
+      scope.count = <span class="hljs-number">3</span>;
+      scope.buyMore = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        scope.count++;
+      }
+    }
+  };
+});
+</code></pre><pre id='index_html-source'><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>A small Angular app<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"demoapp"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+      Here we use a directive.
+    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">clicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">clicker</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../lib/angular.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"code.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"clicker.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+    </div>
+  </div>
+  <script>
+
+  function select(id){
+    $('.sources .active').removeClass('active')
+    $('#'+id).addClass('active')
+    $('#'+id+'-source').addClass('active')
+  }
+
+  $('.sourcenav > *').click(function(e){ select(this.id) })
+
+  select( $('#app_ts').length ? 'app_ts' : $('.sourcenav > *:first-child').attr('id') )
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>A small Angular app</title>
+  </head>
+  <body ng-app="demoapp" ng-controller="democontroller">
+    <p>
+      Your name is: {{name}}
+    </p>
+    <button ng-click="putOnCostume()">Put on costume</button>
+    <p>
+      Enter name: <input ng-model="name">
+    </p>
+    <script src="../../lib/angular.js"></script>
+    <script src="code.js"></script>
+  </body>
+</html>

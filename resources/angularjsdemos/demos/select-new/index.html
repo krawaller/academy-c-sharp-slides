@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Demo</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/style.css">
+  <link rel="stylesheet" href="../../lib/codestyle.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div>
+      <a href="../../index.html">&larr; back to demo index</a>
+      <a href="demo.html" target="_blank">run in new tab</a>
+      <iframe src="demo.html" height="600px"></iframe>
+    </div>
+    <div class="sources">
+      <div class="sourcenav"><div id='code_js'>code.js</div><div id='index_html'>index.html</div></div>
+      <div class="sourcefiles"><pre id='code_js-source'><code>
+<span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">"selectapp"</span>,[]);
+
+app.controller(<span class="hljs-string">'fruitCtrl'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$scope</span>)</span>{
+  $scope.fruits = [
+    {<span class="hljs-attr">name</span>:<span class="hljs-string">"Apple"</span>,<span class="hljs-attr">tastiness</span>:<span class="hljs-number">6</span>},
+    {<span class="hljs-attr">name</span>:<span class="hljs-string">"Cherry"</span>,<span class="hljs-attr">tastiness</span>:<span class="hljs-number">10</span>},
+    {<span class="hljs-attr">name</span>:<span class="hljs-string">"Strawberry"</span>,<span class="hljs-attr">tastiness</span>:<span class="hljs-number">4</span>}
+  ];
+  $scope.selectedFruit = $scope.fruits[<span class="hljs-number">0</span>];
+});
+</code></pre><pre id='index_html-source'><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>A small Angular app<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"selectapp"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"fruitCtrl"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"selectedFruit"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">ng-repeat</span>=<span class="hljs-string">"f in fruits"</span> <span class="hljs-attr">ng-value</span>=<span class="hljs-string">"f"</span>&gt;</span>{{f.name}}<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+        You have selected {{selectedFruit.name}}, which
+        has a tastiness level of {{selectedFruit.tastiness}}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../lib/angular.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+      angular.module(<span class="hljs-string">'selectapp'</span>,[]);
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"code.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+    </div>
+  </div>
+  <script>
+
+  function select(id){
+    $('.sources .active').removeClass('active')
+    $('#'+id).addClass('active')
+    $('#'+id+'-source').addClass('active')
+  }
+
+  $('.sourcenav > *').click(function(e){ select(this.id) })
+
+  select( $('#app_ts').length ? 'app_ts' : $('.sourcenav > *:first-child').attr('id') )
+
+  </script>
+</body>
+
+</html>

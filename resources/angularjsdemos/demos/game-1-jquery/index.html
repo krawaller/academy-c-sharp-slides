@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Demo</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/style.css">
+  <link rel="stylesheet" href="../../lib/codestyle.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div>
+      <a href="../../index.html">&larr; back to demo index</a>
+      <a href="demo.html" target="_blank">run in new tab</a>
+      <iframe src="demo.html" height="600px"></iframe>
+    </div>
+    <div class="sources">
+      <div class="sourcenav"><div id='code_js'>code.js</div><div id='data_js'>data.js</div><div id='index_html'>index.html</div><div id='styles_css'>styles.css</div></div>
+      <div class="sourcefiles"><pre id='code_js-source'><code>
+<span class="hljs-keyword">var</span> currentPage = <span class="hljs-string">"start"</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateTemplateWithPage</span>(<span class="hljs-params">page</span>)</span>{
+  $(<span class="hljs-string">"#pagetitle"</span>).text(page.title);
+  $(<span class="hljs-string">"#pageimg"</span>).attr(<span class="hljs-string">"src"</span>, page.imgUrl);
+  $(<span class="hljs-string">"#pagebabbel"</span>).text(page.babbel);
+  $(<span class="hljs-string">"#pageoptions"</span>).empty();
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;page.options.length; i++){
+    <span class="hljs-keyword">var</span> linkObj = page.options[i];
+    <span class="hljs-keyword">var</span> linkText = linkObj.text;
+    <span class="hljs-keyword">var</span> linkTarget = linkObj.target;
+    <span class="hljs-keyword">var</span> newLink = $(<span class="hljs-string">"&lt;li&gt;&lt;/li&gt;"</span>);
+    newLink.text(linkText);
+    newLink.attr(<span class="hljs-string">"data-option"</span>, i);
+    $(<span class="hljs-string">"#pageoptions"</span>).append(newLink);
+  }
+};
+
+updateTemplateWithPage( adventure.pages[currentPage] );
+
+$(<span class="hljs-string">"#pageoptions"</span>).on(<span class="hljs-string">"click"</span>, <span class="hljs-string">"li"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> pageObj = adventure.pages[currentPage];
+  <span class="hljs-keyword">var</span> linkNumber = $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">"data-option"</span>);
+  <span class="hljs-keyword">var</span> option = pageObj.options[linkNumber];
+  currentPage = option.target;
+  updateTemplateWithPage( adventure.pages[currentPage] );
+});
+</code></pre><pre id='data_js-source'><code>
+<span class="hljs-keyword">var</span> adventure = {
+  <span class="hljs-attr">title</span>: <span class="hljs-string">"My amazing adventure"</span>,
+  <span class="hljs-attr">pages</span>: {
+    <span class="hljs-attr">start</span>: {
+      <span class="hljs-attr">title</span>: <span class="hljs-string">"A VERY dark corridor"</span>,
+      <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">"http://media.moddb.com/images/games/1/29/28520/UDK_2014-01-06_21-25-18-90.png"</span>,
+      <span class="hljs-attr">babbel</span>: <span class="hljs-string">"You are in a dark corridor, which extends into infinity. An ominous door is to your left."</span>,
+      <span class="hljs-attr">options</span>: [
+        {<span class="hljs-attr">text</span>: <span class="hljs-string">"Open the door"</span>, <span class="hljs-attr">target</span>: <span class="hljs-string">"room"</span>},
+        {<span class="hljs-attr">text</span>: <span class="hljs-string">"Go forward"</span>, <span class="hljs-attr">target</span>: <span class="hljs-string">"deadEnd"</span>}
+      ]
+    },
+    <span class="hljs-attr">deadEnd</span>: {
+      <span class="hljs-attr">title</span>: <span class="hljs-string">"A dead end"</span>,
+      <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">"https://cloud.graphicleftovers.com/13747/251328/dead-end-brick-hall.jpg"</span>,
+      <span class="hljs-attr">babbel</span>: <span class="hljs-string">"Suddenly you reach the end of the corridor. There's no door, just a solid wall."</span>,
+      <span class="hljs-attr">options</span>: [
+        {<span class="hljs-attr">text</span>: <span class="hljs-string">"Turn back"</span>, <span class="hljs-attr">target</span>: <span class="hljs-string">"start"</span>}
+      ]
+    },
+    <span class="hljs-attr">room</span>: {
+      <span class="hljs-attr">title</span>: <span class="hljs-string">"A strange room"</span>,
+      <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">"https://s-media-cache-ak0.pinimg.com/originals/b2/31/19/b231194f015763076885c0d7eb647735.jpg"</span>,
+      <span class="hljs-attr">babbel</span>: <span class="hljs-string">"You enter into a small room. There is absolutely nothing in here except for dampness and darkness."</span>,
+      <span class="hljs-attr">options</span>: [
+        {<span class="hljs-attr">text</span>: <span class="hljs-string">"Go back"</span>, <span class="hljs-attr">target</span>: <span class="hljs-string">"start"</span>}
+      ]
+    },
+    <span class="hljs-comment">// ....</span>
+  }
+};</code></pre><pre id='index_html-source'><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>My amazing game<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"styles.css"</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>The strange journey<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pagetitle"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pageimg"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"300"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">""</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pagebabbel"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pageoptions"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>
+      &amp;copy; David 2016. Don't rip off my work!!
+    <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../lib/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"data.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"code.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><pre id='styles_css-source'><code><span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">background-color</span>: gold;
+}
+
+<span class="hljs-selector-tag">footer</span> {
+  <span class="hljs-attribute">border-top</span>: <span class="hljs-number">1px</span> solid black;
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">12px</span>;
+  <span class="hljs-attribute">font-style</span>: italic;
+}
+
+<span class="hljs-selector-tag">main</span> {
+  <span class="hljs-attribute">min-height</span>: <span class="hljs-number">500px</span>;
+}
+
+<span class="hljs-selector-class">.picture</span> {
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(pics/mypic.png);
+  <span class="hljs-attribute">background-size</span>: <span class="hljs-number">100%</span> <span class="hljs-number">100%</span>;
+}
+
+<span class="hljs-selector-tag">img</span> {
+  <span class="hljs-attribute">max-height</span>: <span class="hljs-number">250px</span>;
+  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">450px</span>;
+}
+</code></pre></div>
+    </div>
+  </div>
+  <script>
+
+  function select(id){
+    $('.sources .active').removeClass('active')
+    $('#'+id).addClass('active')
+    $('#'+id+'-source').addClass('active')
+  }
+
+  $('.sourcenav > *').click(function(e){ select(this.id) })
+
+  select( $('#app_ts').length ? 'app_ts' : $('.sourcenav > *:first-child').attr('id') )
+
+  </script>
+</body>
+
+</html>

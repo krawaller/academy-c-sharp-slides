@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>A small Angular app</title>
+  </head>
+  <body ng-app="river">
+
+    <div ng-controller="listOfTopics">
+      <h1><span ng-bind="name"></span>, a feed reader</h1>
+      <div ng-repeat="item in topics">
+        <h6 ng-click="selectTopic(item)">
+          <span ng-show="item === selectedTopic">*</span>
+          {{item.title}}
+        </h6>
+        
+      </div>
+      <hr/>
+
+      <div ng-controller="listOfPosts">
+        <div ng-repeat="item in selectedTopic.posts">
+          <h4 ng-click="viewPost(item)">{{item.title}}</h4>
+          <p ng-show="item === selectedPost">
+            {{item.content}}
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="../../lib/angular.js"></script>
+    <script src="code.js"></script>
+    <script src="topicscontroller.js"></script>
+    <script src="postscontroller.js"></script>
+  </body>
+</html>

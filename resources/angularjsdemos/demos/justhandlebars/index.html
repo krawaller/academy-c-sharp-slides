@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Demo</title>
+  <script src="../../lib/jquery.js"></script>
+  <link rel="stylesheet" href="../../lib/style.css">
+  <link rel="stylesheet" href="../../lib/codestyle.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div>
+      <a href="../../index.html">&larr; back to demo index</a>
+      <a href="demo.html" target="_blank">run in new tab</a>
+      <iframe src="demo.html" height="600px"></iframe>
+    </div>
+    <div class="sources">
+      <div class="sourcenav"><div id='code_js'>code.js</div><div id='index_html'>index.html</div></div>
+      <div class="sourcefiles"><pre id='code_js-source'><code><span class="hljs-keyword">var</span> data = {
+  <span class="hljs-string">"title"</span>: <span class="hljs-string">"A dark corridor"</span>,
+  <span class="hljs-string">"img"</span>: <span class="hljs-string">"http://3.bp.blogspot.com/_1elbE3kd7E8/TLduX1GfHmI/AAAAAAAAANM/R8FTsXiVo-0/s1600/dark_corridor.jpg"</span>,
+  <span class="hljs-string">"description"</span>: <span class="hljs-string">"You are in a dark corridor, which seems to extend into infinity. Ominous doors line the walls"</span>,
+  <span class="hljs-string">"options"</span>: [
+    <span class="hljs-string">"Try a door at random"</span>,
+    <span class="hljs-string">"Move down the corridor"</span>,
+    <span class="hljs-string">"Turn back"</span>
+  ]
+};
+
+<span class="hljs-keyword">var</span> templateDefinition = <span class="hljs-string">`
+  &lt;h4&gt;{{title}}&lt;/h4&gt;
+  &lt;img src="{{img}}"&gt;
+  &lt;p id="para"&gt;{{description}}&lt;/p&gt;
+  &lt;ul&gt;
+    {{#each options}}
+      &lt;li&gt;{{this}}&lt;/li&gt;
+    {{/each}}
+  &lt;/ul&gt;
+`</span>;
+
+<span class="hljs-keyword">var</span> templateFunction = Handlebars.compile(templateDefinition);
+
+<span class="hljs-keyword">var</span> DOM = templateFunction( data );
+
+
+<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">".wrapper"</span>).innerHTML = DOM;
+</code></pre><pre id='index_html-source'><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-class">.wrapper</span> <span class="hljs-selector-tag">img</span> {
+      <span class="hljs-attribute">max-width</span>: <span class="hljs-number">350px</span>;
+    }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wrapper"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../lib/handlebars.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"code.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre></div>
+    </div>
+  </div>
+  <script>
+
+  function select(id){
+    $('.sources .active').removeClass('active')
+    $('#'+id).addClass('active')
+    $('#'+id+'-source').addClass('active')
+  }
+
+  $('.sourcenav > *').click(function(e){ select(this.id) })
+
+  select( $('#app_ts').length ? 'app_ts' : $('.sourcenav > *:first-child').attr('id') )
+
+  </script>
+</body>
+
+</html>
